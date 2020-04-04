@@ -6,6 +6,7 @@ import 'signup_screen.dart';
 import 'models_screen.dart';
 import 'contact_screen.dart';
 import 'package:cdruk/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,6 +34,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  SharedPreferences preferences;
+
+  void loadPreferences() async {
+    preferences = await SharedPreferences.getInstance();
+  }
+
+  @override
+  void initState() {
+    loadPreferences();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,14 +122,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ListTile(
                 title: Text('3D Models'),
                 onTap: () {
-                 Navigator.push(context,
+                  Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ModelsScreen()));
                 },
               ),
               ListTile(
                 title: Text('Contact'),
                 onTap: () {
-                    Navigator.push(context,
+                  Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ContactScreen()));
                 },
               )

@@ -1,4 +1,6 @@
+import 'package:cdruk/api.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key}) : super(key: key);
@@ -11,6 +13,20 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final TextEditingController _emailController = new TextEditingController();
   final TextEditingController _passwordController = new TextEditingController();
+  
+  var _error;
+
+  SharedPreferences preferences;
+
+  void loadPreferences() async {
+    preferences = await SharedPreferences.getInstance();
+  }
+
+  @override
+  void initState() {
+    loadPreferences();
+    _error = "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +54,23 @@ class _LoginScreenState extends State<LoginScreen> {
                 labelText: "Password"
               ),
             ),
+            Text(
+              _error,
+              style: TextStyle(color: Colors.redAccent),
+            ),
             RaisedButton(
               child: Text("Login"),
-              onPressed: () {},
+              onPressed: () {
+                api.login(_emailController.text, _passwordController.text).then((value) {
+                  if (value.runtimeType == String) {
+                    preferences.setString("user", value);
+                  } else {
+                    setState(() {
+                      _error = value['error'];
+                    });
+                  }
+                });
+              },
               color: Colors.green,
             )
           ],

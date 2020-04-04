@@ -22,7 +22,7 @@ class _ModelsScreenState extends State<ModelsScreen> {
             children: <Widget>[
               InkWell(
                 child: Text('Przyłbica prusy'),
-                onTap: () => launch('https://www.prusaprinters.org/prints/25857-prusa-face-shield'),                
+                onTap: () => launch('https://www.prusaprinters.org/prints/25857-prusa-face-shield'),
               )
             ]),
       ),

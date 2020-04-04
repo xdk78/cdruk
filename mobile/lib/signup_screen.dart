@@ -1,3 +1,4 @@
+import 'package:cdruk/api.dart';
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -9,8 +10,18 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
 
+  final TextEditingController _nameController = new TextEditingController();
   final TextEditingController _emailController = new TextEditingController();
   final TextEditingController _passwordController = new TextEditingController();
+
+  var _error;
+  var _done;
+
+  @override
+  void initState() {
+    _error = "";
+    _done = "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +34,13 @@ class _SignupScreenState extends State<SignupScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            TextField(
+              controller: _nameController,
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                labelText: "Name"
+              ),
+            ),
             TextField(
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
@@ -38,9 +56,32 @@ class _SignupScreenState extends State<SignupScreen> {
                 labelText: "Password"
               ),
             ),
+            Text(
+              _error,
+              style: TextStyle(color: Colors.redAccent),
+            ),
+            Text(
+              _done,
+              style: TextStyle(color: Colors.lightGreenAccent),
+            ),
             RaisedButton(
-              child: Text("Signup"),
-              onPressed: () {},
+              child: Text("Sign Up"),
+              onPressed: () {
+                api.register(_nameController.text, _emailController.text, _passwordController.text)
+                  .then((value) {
+                    if (value.runtimeType == String) {
+                      setState(() {
+                        _done = "Registered successfully";
+                        _error = "";
+                      });
+                    } else {
+                      setState(() {
+                        _error = value['error'];
+                      });
+                    }
+                  }
+                );
+              },
               color: Colors.green,
             )
           ],
