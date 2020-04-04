@@ -36,21 +36,22 @@ function Menu() {
               <a className="navbar-item">CDRUK</a>
             </Link>
           </div>
-
-          <div className="navbar-end">
-            <div className="navbar-item">
-              <div className="buttons">
-                <Link href="/signup">
-                  <a className="button is-primary">
-                    <strong>Sign up</strong>
-                  </a>
-                </Link>
-                <Link href="/login">
-                  <a className="button is-light">Log in</a>
-                </Link>
+          {!isLogged && (
+            <div className="navbar-end">
+              <div className="navbar-item">
+                <div className="buttons">
+                  <Link href="/signup">
+                    <a className="button is-primary">
+                      <strong>Sign up</strong>
+                    </a>
+                  </Link>
+                  <Link href="/login">
+                    <a className="button is-light">Log in</a>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </nav>
     </div>
