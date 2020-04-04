@@ -1,6 +1,6 @@
 import React from 'react'
-import Footer from './components/footer'
-import Menu from './components/menu'
+import Footer from '../components/footer'
+import Menu from '../components/menu'
 
 function Index() {
   return (

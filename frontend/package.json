@@ -20,7 +20,9 @@
     "next": "^9.3.4",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-three-fiber": "^4.0.25",
+    "three": "^0.115.0"
   },
   "devDependencies": {
     "@types/node": "^13.9.8",

@@ -24,6 +24,6 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "src/pages/index.tsx", "src/pages/anime/[title]/index.tsx", "src/pages/_app.tsx"
+    "**/*.tsx", "src/pages/index.tsx", "src/pages/anime/[title]/index.tsx", "src/pages/_app.tsx", "components/virus.jsx", "components/effects.jsx"
   ]
 }
