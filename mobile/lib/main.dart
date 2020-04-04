@@ -1,6 +1,9 @@
 import 'package:cdruk/login_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'signup_screen.dart';
+import 'signup_screen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -64,6 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 ListTile(
                   title: Text('Sign up'),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SignupScreen()));
+                  },
                 )
               ]
           ).toList(),

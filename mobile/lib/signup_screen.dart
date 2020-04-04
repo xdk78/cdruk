@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key}) : super(key: key);
+class SignupScreen extends StatefulWidget {
+  SignupScreen({Key key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignupScreenState createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
 
   final TextEditingController _emailController = new TextEditingController();
   final TextEditingController _passwordController = new TextEditingController();
@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Log in"),
+        title: Text("Sign Up"),
       ),
       body: Center(
         child: Column(
@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             RaisedButton(
-              child: Text("Login"),
+              child: Text("Signup"),
               onPressed: () {},
               color: Colors.green,
             )
