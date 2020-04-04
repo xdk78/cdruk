@@ -3,6 +3,7 @@ import Koa from 'koa'
 import logger from 'koa-logger'
 import Router from 'koa-router'
 import bodyParser from 'koa-bodyparser'
+import consola from 'consola'
 import { Connection, createConnection } from 'typeorm'
 import { User } from './entity/User'
 
@@ -24,6 +25,7 @@ router
   })
   .post('/register', (ctx) => {
     const repo = db.getRepository(User)
+    // repo.findOne()
     ctx.body = ctx.request.body
 
   })
@@ -51,5 +53,8 @@ createConnection()
     db = conn
   })
   .then(() => koa.listen(3000))
-  // eslint-disable-next-line no-console
-  .then(() => console.log('Listening on 0.0.0.0:3000'))
+  .then(() => consola.success('Listening on 0.0.0.0:3000'))
+  .catch(err => {
+    consola.error('Failed to start:')
+    consola.error(err)
+  })
