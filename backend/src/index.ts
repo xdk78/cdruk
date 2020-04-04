@@ -26,7 +26,7 @@ koa
     .unless({ path: [/^\//, /^\/register\/?$/, /^\/login\/?$/] }))
   .use(router.routes())
   .use(router.allowedMethods())
-  .use(cors({ origin: true, credentials: true }))
+  .use(cors({ credentials: true }))
 
 koa.context.validate = function validate(value: any, message: string) {
   if (!value) this.throw(400, JSON.stringify({ error: message }))
