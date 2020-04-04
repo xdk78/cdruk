@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
-const BASE_URL = 'http://localhost:4000'
+const BASE_URL = process.env.BASE_URL || 'http://localhost:3001'
 
 axios.defaults.baseURL = BASE_URL
 
