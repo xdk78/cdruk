@@ -1,5 +1,6 @@
 import 'reflect-metadata'
 import Koa from 'koa'
+import logger from 'koa-logger'
 import Router from 'koa-router'
 import bodyParser from 'koa-bodyparser'
 import { Connection, createConnection } from 'typeorm'
@@ -10,6 +11,7 @@ let db: Connection
 const koa = new Koa()
 const router = new Router()
 koa
+  .use(logger())
   .use(bodyParser())
   .use(router.routes())
   .use(router.allowedMethods())
