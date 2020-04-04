@@ -4,6 +4,10 @@ import bodyParser from 'koa-bodyparser';
 
 const koa = new Koa();
 const router = new Router();
+koa
+  .use(bodyParser())
+  .use(router.routes())
+  .use(router.allowedMethods());
 
 router
   .get('/', (ctx) => {
@@ -31,10 +35,6 @@ router
   })
   .post('/getOrder', (ctx) => {
     ctx.body = ctx.request.body;
-  })
+  });
 
-koa
-  .use(router.routes())
-  .use(router.allowedMethods())
-  .use(bodyParser())
-  .listen(3000);
+koa.listen(3000);
