@@ -23,9 +23,9 @@ koa
   .use(bodyParser())
   .use(session({
     secret: process.env.JWT_SECRET || 'ddd',
-    getToken: (ctx) => ctx.headers.Authorization?.replace('Bearer ') || ''
+    getToken: (ctx) => ctx.headers.authorization?.replace('Bearer ', '')
   })
-    .unless({ path: [/^\//, /^\/register\/?$/, /^\/login\/?$/] }))
+    .unless({ path: [/^\/$/, /^\/register\/?$/, /^\/login\/?$/] }))
   .use(cors({ credentials: true }))
   .use(router.routes())
   .use(router.allowedMethods())

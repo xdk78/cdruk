@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken'
+import { User } from './entity/User'
 
-export function jwtSign(payload: any) {
-  return jwt.sign(payload, process.env.JWT_SECRET || 'ddd')
+export function jwtSign(user: User) {
+  return jwt.sign({ uid: user.id }, process.env.JWT_SECRET || 'ddd')
 }
 
 // eslint-disable-next-line no-useless-escape

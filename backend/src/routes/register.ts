@@ -34,7 +34,7 @@ export default async function handler(ctx: ExtendableContext) {
 
   await repo.save(user)
 
-  const token = jwtSign({ ...user })
+  const token = jwtSign(user)
   ctx.body = {
     data: {
       token
