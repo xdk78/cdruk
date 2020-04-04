@@ -5,7 +5,7 @@ function Footer() {
     <footer className="footer">
       <div className="content has-text-centered">
         <p>
-          <strong>@ 2020</strong> by ddd
+          <strong>&copy; 2020</strong> by ddd
         </p>
       </div>
     </footer>

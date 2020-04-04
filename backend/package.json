@@ -5,6 +5,10 @@
   "repository": "git@github.com:selfisekai/cdruk.git",
   "author": "selfisekai <laura@selfisekai.rocks>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js"
+  },
   "devDependencies": {
     "@types/koa": "^2.11.3",
     "@types/koa-router": "^7.4.0",
