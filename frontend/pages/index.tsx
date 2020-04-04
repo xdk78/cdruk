@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Footer from '../components/footer'
 import Menu from '../components/menu'
+import { connect } from 'react-redux'
 
 function Index() {
   return (
@@ -36,4 +37,4 @@ function Index() {
   )
 }
 
-export default Index
+export default connect()(Index)

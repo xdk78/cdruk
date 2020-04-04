@@ -2,17 +2,13 @@ import React, { useEffect } from 'react'
 import Footer from '../components/footer'
 import Link from 'next/link'
 import { fetchModels } from '../store'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector, connect } from 'react-redux'
 
 type Model = {
   id?: number
-
   name?: string
-
   description?: string
-
   stlFile?: string
-
   pictureURI?: string
 }
 
@@ -64,4 +60,4 @@ function Models() {
   )
 }
 
-export default Models
+export default connect()(Models)
