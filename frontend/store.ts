@@ -17,8 +17,6 @@ export const actionTypes = {
   LOGIN_ERROR: 'LOGIN_ERROR',
   LOGIN_PENDING: 'LOGIN_PENDING',
   LOGOUT: 'LOGOUT',
-
-  
 }
 
 // REDUCERS
@@ -46,9 +44,9 @@ export const reducer = (state = defaultState, action) => {
 // ACTIONS
 export const signup = (email: string, password: string) => async (dispatch) => {
   try {
-    const { data } = await api('/register', {
-      method: 'POST',
-      data: { email, password },
+    const { data } = await api.post('/register', {
+      email,
+      password,
     })
     dispatch({ type: actionTypes.SIGN_UP_PENDING })
     dispatch({
@@ -62,10 +60,7 @@ export const signup = (email: string, password: string) => async (dispatch) => {
 
 export const login = (email: string, password: string) => async (dispatch) => {
   try {
-    const { data } = await api('/login', {
-      method: 'POST',
-      data: { email, password },
-    })
+    const { data } = await api.post('/login', { email, password })
     dispatch({ type: actionTypes.LOGIN_PENDING })
     dispatch({
       type: actionTypes.LOGIN_SUCCES,

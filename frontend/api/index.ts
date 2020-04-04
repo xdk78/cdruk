@@ -1,8 +1,10 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import axios from 'axios'
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3001'
 
-axios.defaults.baseURL = BASE_URL
-
-export default (endpoint: string, config: AxiosRequestConfig) =>
-  axios(endpoint, config)
+export default axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
