@@ -10,4 +10,13 @@ export class User {
 
   @Column()
   password?: string
+
+  @Column()
+  isMerchant?: boolean
+
+  @Column()
+  name?: string
+
+  @Column()
+  location?: string
 }
