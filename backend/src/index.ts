@@ -47,21 +47,15 @@ router
   .get('/objects', (ctx) => {
     ctx.body = ctx.request.body
   })
-  .get('/merchants', (ctx) => {
-    ctx.body = ctx.request.body
-  })
-  .get('/merchants/:id', (ctx) => {
-    ctx.body = ctx.request.body
-  })
-  .get('/orders', (ctx) => {
-    ctx.body = ctx.request.body
-  })
-  .get('/orders/:id', (ctx) => {
-    ctx.body = ctx.request.body
-  })
-  .post('/orders', (ctx) => {
-    ctx.body = ctx.request.body
-  })
+  .get('/getObjects', async (ctx) => {
+    let m:any = []
+    const repo = db.getRepository(Model)
+    let results = await repo.find()
+    results.forEach(function(model) {
+      m.push({name: model.name, description: model.description, stlFile: model.stlFile, pictureURI: model.pictureURI})
+    })
+    ctx.message = JSON.stringify(m)
+  });
 
 const port = parseInt(process.env.PORT || '3001', 10)
 
