@@ -34,7 +34,36 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("CDRUK"),
       ),
       body: Center(
-        child: Text("Tu coś będzie")
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+          Text("CDRUK"),
+          Text(
+            "aka KORONA W DRUKU",
+            style: TextStyle(fontSize: 12.0))
+        ],)
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: ListTile.divideTiles( //          <-- ListTile.divideTiles
+              context: context,
+              tiles: [
+                DrawerHeader(
+                  child: Text('CDRUK'),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(179, 179, 179, 0.4),
+                  ),
+                ),
+                ListTile(
+                  title: Text('Log In'),
+                ),
+                ListTile(
+                  title: Text('Sign Up'),
+                )
+              ]
+          ).toList(),
+        )
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {},
