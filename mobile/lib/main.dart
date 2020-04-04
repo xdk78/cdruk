@@ -1,3 +1,4 @@
+import 'package:cdruk/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -56,10 +57,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 ListTile(
-                  title: Text('Log In'),
+                  title: Text('Log in'),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                  },
                 ),
                 ListTile(
-                  title: Text('Sign Up'),
+                  title: Text('Sign up'),
                 )
               ]
           ).toList(),
