@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "dev": "npm run build && npm start"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -27,6 +28,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@koa/cors": "^3.0.0",
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-session": "^5.10.2",
     "bcryptjs": "^2.4.3",

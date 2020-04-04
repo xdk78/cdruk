@@ -4,11 +4,12 @@ import logger from 'koa-logger'
 import Router from 'koa-router'
 import bodyParser from 'koa-bodyparser'
 import session from 'koa-jwt'
-import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken'
 import consola from 'consola'
 import { Connection, createConnection } from 'typeorm'
 import { readJSONSync } from 'fs-extra'
-import path from 'path';
+import path from 'path'
+import cors from '@koa/cors'
 import { User } from './entity/User'
 import { hashPassword, generateSalt } from './utils'
 
@@ -20,27 +21,30 @@ const config = readJSONSync(path.resolve(__dirname, '..', 'config.json'))
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 const koa = new Koa()
-koa.keys = [ Math.random().toString(32) ]
+koa.keys = [Math.random().toString(32)]
 
 const router = new Router()
 koa
   .use(logger())
   .use(bodyParser())
-  .use(session({
+  .use(
+    session({
       secret: config.jwtSecret,
-      getToken: (ctx) => ctx.cookies.get('laravel_session') || '' })
-    .unless({ path: [/^\//, /^\/register\/?$/] }))
+      getToken: (ctx) => ctx.cookies.get('laravel_session') || '',
+    }).unless({ path: [/^\//, /^\/register\/?$/] })
+  )
   .use(router.routes())
   .use(router.allowedMethods())
+  .use(cors({ origin: true, credentials: true }))
 
-koa.context.validate = function validate (value: any, message: string) {
+koa.context.validate = function validate(value: any, message: string) {
   if (!value) this.throw(400, JSON.stringify({ error: message }))
 }
 
 router
   .get('/', (ctx) => {
     ctx.body = {
-      data: 'hello world!'
+      data: 'hello world!',
     }
   })
   .post('/register', async (ctx) => {
@@ -52,9 +56,15 @@ router
     ctx.validate(emailRegex.test(body.email), 'Email should be an email')
 
     ctx.validate(body.password != null, 'Request body should contain password')
-    ctx.validate(typeof body.password === 'string', 'Password should be type string')
+    ctx.validate(
+      typeof body.password === 'string',
+      'Password should be type string'
+    )
     ctx.validate(body.password.trim() !== '', 'Password should not be empty')
-    ctx.validate(body.password.length > 8, 'Password should have at least 8 characters')
+    ctx.validate(
+      body.password.length > 8,
+      'Password should have at least 8 characters'
+    )
 
     const repo = db.getRepository(User)
 
@@ -66,13 +76,13 @@ router
     user.passwordSalt = await generateSalt()
     user.password = await hashPassword(body.password, user.passwordSalt)
 
-    repo.save(user);
+    repo.save(user)
 
     ctx.cookies.set('laravel_session', jwt.sign({ ...user }, config.jwtSecret))
     ctx.body = {
       data: {
-        message: 'User created successfully'
-      }
+        message: 'User created successfully',
+      },
     }
   })
   .post('/login', (ctx) => {
@@ -100,7 +110,7 @@ createConnection()
   })
   .then(() => koa.listen(config.httpPort))
   .then(() => consola.success(`Listening on 0.0.0.0:${config.httpPort}`))
-  .catch(err => {
+  .catch((err) => {
     consola.error('Failed to start:')
     consola.error(err)
   })
