@@ -38,7 +38,7 @@ function Menu() {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <Link href="/singup">
+                <Link href="/signup">
                   <a className="button is-primary">
                     <strong>Sign up</strong>
                   </a>
