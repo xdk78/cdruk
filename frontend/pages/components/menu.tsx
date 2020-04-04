@@ -38,10 +38,14 @@ function Menu() {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <a className="button is-primary">
-                  <strong>Sign up</strong>
-                </a>
-                <a className="button is-light">Log in</a>
+                <Link href="/singup">
+                  <a className="button is-primary">
+                    <strong>Sign up</strong>
+                  </a>
+                </Link>
+                <Link href="/login">
+                  <a className="button is-light">Log in</a>
+                </Link>
               </div>
             </div>
           </div>
