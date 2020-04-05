@@ -34,7 +34,8 @@ koa
         /^\/register\/?$/,
         /^\/login\/?$/,
         // eslint-disable-next-line no-useless-escape
-        /^\/verify\/[a-f0-9\-]*\/$/
+        /^\/verify\/[a-f0-9\-]*\/$/,
+        /^\/merchants\/?$/ // for the sake of demo
       ],
       // @ts-ignore it *should* work: https://github.com/Foxandxss/koa-unless
       method: [
