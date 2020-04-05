@@ -12,8 +12,5 @@ export class Model {
   description?: string
 
   @Column()
-  stlFile?: string;
-
-  @Column()
-  pictureURI?: string;
+  pictureURI?: string
 }

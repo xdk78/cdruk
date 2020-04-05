@@ -10,12 +10,10 @@ export async function addModel(ctx: ExtendableContext) {
   const { body } = ctx.request
   ctx.validate(typeof body.name === 'string', 'Name must be a string!')
   ctx.validate(typeof body.description === 'string', 'Description must be a string!')
-  ctx.validate(typeof body.stlFile === 'string', 'stlFile must be a string!')
   ctx.validate(typeof body.pictureURI === 'string', 'pictureURI must be a string!')
 
   ctx.validate(body.name.trim() !== '', 'Name must not be empty!')
   ctx.validate(body.description.trim() !== '', 'Description must not be empty!')
-  ctx.validate(body.stlFile.trim() !== '', 'stlFile must not be empty!')
   ctx.validate(body.pictureURI.trim() !== '', 'pictureURI must not be empty!')
 
   const userRepo = ctx.getRepo(User)
@@ -27,7 +25,6 @@ export async function addModel(ctx: ExtendableContext) {
   const m = new Model()
   m.name = body.name
   m.description = body.description
-  m.stlFile = body.stlFile
   m.pictureURI = body.pictureURI 
   
   await repo.save(m)
