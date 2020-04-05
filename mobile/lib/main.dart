@@ -176,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Visibility(
                       visible: preferences.getString("token") != null,
                       child: ListTile(
-                        title: Text("ddd"),
+                        title: Text("Log Out"),
                         onTap: () {
                           setState(() {
                             preferences.remove("token");
