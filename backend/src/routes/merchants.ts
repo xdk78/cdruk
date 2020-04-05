@@ -7,13 +7,15 @@ const offset = () => (Math.random() + Math.random() * -1) * 0.1
 
 export default async function merchants(ctx: ExtendableContext) {
   // ctx.body = await ctx.getRepo(User).find({ isMerchant: true })
-  ctx.body = Array.from({ length: 10 }, (_, i) => {
-    const name = names[Math.floor(Math.random() * names.length)]
-    const id = i
-    return {
-      id,
-      name,
-      location: `${52.23 + offset()} ${21.01 + offset()}`
-    }
-  })
+  ctx.body = {
+    data: Array.from({ length: 10 }, (_, i) => {
+      const name = names[Math.floor(Math.random() * names.length)]
+      const id = i
+      return {
+        id,
+        name,
+        location: `${52.23 + offset()} ${21.01 + offset()}`
+      }
+    })
+  }
 }
