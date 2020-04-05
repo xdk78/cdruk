@@ -51,7 +51,7 @@ function Merchants() {
                   </div>
                 ))
               ) : (
-                <h1 className="title is-3">No merchants avaliable</h1>
+                <h1 className="title is-3">No merchants available</h1>
               )}
             </div>
           </div>
