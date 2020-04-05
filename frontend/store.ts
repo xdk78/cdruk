@@ -27,6 +27,9 @@ export const actionTypes = {
   FETCH_MODELS_PENDING: 'FETCH_MODELS_PENDING',
   FETCH_MODELS_SUCCESS: 'FETCH_MODELS_SUCCESS',
   FETCH_MODELS_ERROR: 'FETCH_MODELS_ERROR',
+  FETCH_CURRENT_USER_PENDING: 'FETCH_CURRENT_USER_PENDING',
+  FETCH_CURRENT_USER_SUCCESS: 'FETCH_CURRENT_USER_SUCCESS',
+  FETCH_CURRENT_USER_ERROR: 'FETCH_CURRENT_USER_ERROR',
 }
 
 // REDUCERS
@@ -37,6 +40,12 @@ export const reducer = (state = defaultState, action) => {
     case actionTypes.SIGN_UP_PENDING:
       return { ...state, isLogged: false }
     case actionTypes.SIGN_UP_ERROR:
+      return { ...state, isLogged: false }
+    case actionTypes.FETCH_CURRENT_USER_SUCCESS:
+      return { ...state, user: action.payload.user, isLogged: true }
+    case actionTypes.FETCH_CURRENT_USER_PENDING:
+      return { ...state, isLogged: false }
+    case actionTypes.FETCH_CURRENT_USER_PENDING:
       return { ...state, isLogged: false }
     case actionTypes.LOGIN_SUCCESS:
       return { ...state, user: action.payload.user, isLogged: true }
@@ -150,6 +159,24 @@ export const fetchModels = () => async (dispatch, getState) => {
     })
   } catch (error) {
     dispatch({ type: actionTypes.FETCH_MODELS_ERROR })
+  }
+}
+
+export const fetchCurrentUser = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: actionTypes.FETCH_CURRENT_USER_PENDING })
+    const { data } = await api.get('/me', {
+      headers: {
+        Authorization: `Bearer ${getState().initialState.user.token}`,
+      },
+    })
+
+    dispatch({
+      type: actionTypes.FETCH_CURRENT_USER_SUCCESS,
+      payload: { user: data.data },
+    })
+  } catch (error) {
+    dispatch({ type: actionTypes.FETCH_CURRENT_USER_ERROR })
   }
 }
 
