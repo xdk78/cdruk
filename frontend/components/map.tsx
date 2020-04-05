@@ -7,11 +7,18 @@ type State = {
   zoom: number,
 }
 
-export default class SimpleExample extends React.Component<{}, State> {
+interface Merchant {
+  id?: number
+  email?: string
+  name?: string
+  location?: string
+}
+
+export default class SimpleExample extends React.Component<{ merchants: Merchant[] }, State> {
   state = {
-    lat: 52.196667,
-    lng: 19.356389,
-    zoom: 6
+    lat: 52.23,
+    lng: 21.01,
+    zoom: 11
   }
 
   render() {
@@ -22,11 +29,16 @@ export default class SimpleExample extends React.Component<{}, State> {
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={position}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
+        {this.props.merchants.map(merchant => {
+          return (
+            <Marker key={merchant.id} position={merchant.location.split(' ').map(x => parseFloat(x))}>
+              <Popup>
+                {merchant.name}<br/>
+                {merchant.email}
+              </Popup>
+            </Marker>
+          )
+        })}
       </LeafletMap>
     )
   }

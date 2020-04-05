@@ -45,8 +45,6 @@ export const reducer = (state = defaultState, action) => {
       return { ...state, user: action.payload.user, isLogged: true }
     case actionTypes.FETCH_CURRENT_USER_PENDING:
       return { ...state, isLogged: false }
-    case actionTypes.FETCH_CURRENT_USER_PENDING:
-      return { ...state, isLogged: false }
     case actionTypes.LOGIN_SUCCESS:
       return { ...state, user: action.payload.user, isLogged: true }
     case actionTypes.LOGIN_PENDING:
@@ -131,7 +129,7 @@ export const fetchMerchants = () => async (dispatch, getState) => {
     dispatch({ type: actionTypes.FETCH_MERCHANTS_PENDING })
     const { data } = await api.get('/merchants', {
       headers: {
-        Authorization: `Bearer ${getState().initialState.user.token}`,
+        Authorization: `Bearer ${getState().user.token}`,
       },
     })
 
@@ -140,6 +138,7 @@ export const fetchMerchants = () => async (dispatch, getState) => {
       payload: { merchants: data.data },
     })
   } catch (error) {
+    console.log('oopsie', error)
     dispatch({ type: actionTypes.FETCH_MERCHANTS_ERROR })
   }
 }
