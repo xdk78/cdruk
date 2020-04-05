@@ -15,5 +15,9 @@ export default async function handler(ctx: ExtendableContext) {
 
   user.isVerified = true
   await repo.save(user)
-  ctx.redirect('/', 'Redirecting...')
+  ctx.body = {
+    data: {
+      success: true
+    }
+  }
 }
