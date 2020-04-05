@@ -14,7 +14,7 @@ class Index extends React.Component<{}, {}> {
         <Navbar/>
         <div className="main">
           <div className="column has-background-white">
-            First column
+            @TODO merchants here
           </div>
           <div className="column is-three-quarters">
             <Map/>
