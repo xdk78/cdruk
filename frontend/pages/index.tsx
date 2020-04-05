@@ -35,7 +35,7 @@ function Index() {
             return (
               <div key={merchant.id} className="box">
                 <span>{merchant.name}</span><br/>
-                <span>{merchant.email}</span><br/>
+                <span><a href={'mailto:' + merchant.email}>{merchant.email}</a></span><br/>
                 <span>{merchant.description}</span>
               </div>
             )

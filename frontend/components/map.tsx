@@ -35,7 +35,7 @@ export default class Map extends React.Component<{ merchants: Merchant[] }, Stat
             <Marker key={merchant.id} position={merchant.location.split(' ').map(x => parseFloat(x))}>
               <Popup>
                 {merchant.name}<br/>
-                {merchant.email}<br/>
+                <a href={'mailto:' + merchant.email}>{merchant.email}</a><br/>
                 {merchant.description}
               </Popup>
             </Marker>
