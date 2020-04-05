@@ -35,6 +35,10 @@ koa
         /^\/login\/?$/,
         // eslint-disable-next-line no-useless-escape
         /^\/verify\/[a-f0-9\-]*\/$/
+      ],
+      // @ts-ignore it *should* work: https://github.com/Foxandxss/koa-unless
+      method: [
+        'OPTIONS'
       ]
     }))
   .use(cors({ origin: '*', credentials: true }))
