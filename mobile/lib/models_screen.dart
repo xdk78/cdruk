@@ -23,7 +23,7 @@ class _ModelsScreenState extends State<ModelsScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 InkWell(
-                  child: Text('Przyłbica prusy'),
+                  child: Text('Przyłbica Prusy'),
                   onTap: () => launch(
                       'https://www.prusaprinters.org/prints/25857-prusa-face-shield'),
                 ),

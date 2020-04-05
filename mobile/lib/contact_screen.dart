@@ -24,7 +24,7 @@ class _ContactScreenState extends State<ContactScreen> {
                 RichText(
                   text: TextSpan(
                       text:
-                          'Twój szpital potrzebuje sprzętu? Skontaktuj się z nami i zostanies umieszczony na mapie!\n',
+                          'Twój szpital potrzebuje sprzętu? Skontaktuj się z nami i zostaniesz umieszczony na mapie!\n',
                       style: TextStyle(
                         fontSize: 30,
                         color: Colors.black87,
