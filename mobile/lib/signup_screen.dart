@@ -9,7 +9,6 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-
   final TextEditingController _nameController = new TextEditingController();
   final TextEditingController _emailController = new TextEditingController();
   final TextEditingController _passwordController = new TextEditingController();
@@ -34,26 +33,31 @@ class _SignupScreenState extends State<SignupScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            TextField(
-              controller: _nameController,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                labelText: "Name"
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: TextField(
+                controller: _nameController,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                    labelText: "Name", border: OutlineInputBorder()),
               ),
             ),
-            TextField(
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                labelText: "E-mail"
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: TextField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                    labelText: "E-mail", border: OutlineInputBorder()),
               ),
             ),
-            TextField(
-              controller: _passwordController,
-              keyboardType: TextInputType.text,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: "Password"
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: TextField(
+                controller: _passwordController,
+                keyboardType: TextInputType.text,
+                obscureText: true,
+                decoration: InputDecoration(labelText: "Password", border: OutlineInputBorder()),
               ),
             ),
             Text(
@@ -67,20 +71,21 @@ class _SignupScreenState extends State<SignupScreen> {
             RaisedButton(
               child: Text("Sign Up"),
               onPressed: () {
-                api.register(_nameController.text, _emailController.text, _passwordController.text)
-                  .then((value) {
-                    if (value.runtimeType == String) {
-                      setState(() {
-                        _done = "Registered successfully";
-                        _error = "";
-                      });
-                    } else {
-                      setState(() {
-                        _error = value['error'];
-                      });
-                    }
+                api
+                    .register(_nameController.text, _emailController.text,
+                        _passwordController.text)
+                    .then((value) {
+                  if (value.runtimeType == String) {
+                    setState(() {
+                      _done = "Registered successfully";
+                      _error = "";
+                    });
+                  } else {
+                    setState(() {
+                      _error = value['error'];
+                    });
                   }
-                );
+                });
               },
               color: Colors.green,
             )
