@@ -37,7 +37,7 @@ koa
         /^\/verify\/[a-f0-9\-]*\/$/
       ]
     }))
-  .use(cors({ credentials: true }))
+  .use(cors({ origin: '*', credentials: true }))
   .use(router.routes())
   .use(router.allowedMethods())
 
