@@ -9,7 +9,7 @@ import consola from 'consola'
 import { Connection, createConnection } from 'typeorm'
 import register from './routes/register'
 import login from './routes/login'
-import models from './routes/models'
+import { models, addModel } from './routes/models'
 import merchants from './routes/merchants'
 import profile from './routes/profile'
 import verify from './routes/verify'
@@ -65,6 +65,7 @@ router
   .get('/getMerchantQueue', getMerchantQueue)
   .get('/getOrderList', getOrderList)
   .post('/setOrderStatus', setOrderStatus)
+  .post('/addModel', addModel)
 
 const port = parseInt(process.env.PORT || '3001', 10)
 
