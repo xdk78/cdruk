@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cdruk/api.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -63,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
               onPressed: () {
                 api.login(_emailController.text, _passwordController.text).then((value) {
                   if (value.runtimeType == String) {
-                    preferences.setString("user", value);
+                    preferences.setString("token", json.decode(value)['data']['token']);
                   } else {
                     setState(() {
                       _error = value['error'];
