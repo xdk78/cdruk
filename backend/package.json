@@ -17,6 +17,8 @@
     "@types/koa": "^2.11.3",
     "@types/koa-logger": "^3.1.1",
     "@types/koa-router": "^7.4.0",
+    "@types/nodemailer": "^6.4.0",
+    "@types/uuid": "^7.0.2",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "eslint": "^6.8.0",
@@ -43,8 +45,10 @@
     "koa-logger": "^3.2.1",
     "koa-router": "^8.0.8",
     "koa-session": "^5.13.1",
+    "nodemailer": "^6.4.6",
     "reflect-metadata": "^0.1.10",
     "sqlite3": "^4.0.3",
-    "typeorm": "0.2.24"
+    "typeorm": "0.2.24",
+    "uuid": "^7.0.3"
   }
 }

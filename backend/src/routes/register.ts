@@ -1,7 +1,9 @@
 import { ExtendableContext } from 'koa'
 import bcrypt from 'bcryptjs'
+import consola from 'consola'
 import { emailRegex, jwtSign } from '../utils'
 import { User } from '../entity/User'
+import { sendRegistrationMail } from '../mailer'
 
 export default async function handler(ctx: ExtendableContext) {
   const { body } = ctx.request
@@ -29,6 +31,7 @@ export default async function handler(ctx: ExtendableContext) {
   user.email = body.email
   user.password = await bcrypt.hash(body.password, await bcrypt.genSalt())
   user.isMerchant = !!body.isMerchant
+  user.isVerified = false
   user.name = body.name
   user.location = body.location || ''
 
@@ -39,5 +42,15 @@ export default async function handler(ctx: ExtendableContext) {
     data: {
       token
     }
+  }
+  if (user.email && user.name) {
+    sendRegistrationMail(user)
+      .then(() => {
+        consola.success(`Sent verification email to ${user.email}`)
+      })
+      .catch(err => {
+        consola.error(`Couldn't send verification email to ${user.email}`)
+        consola.error(err)
+      })
   }
 }

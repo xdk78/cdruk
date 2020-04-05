@@ -12,6 +12,9 @@ export class User {
   password?: string
 
   @Column()
+  isVerified?: boolean
+
+  @Column()
   isMerchant?: boolean
 
   @Column()

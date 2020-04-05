@@ -13,6 +13,7 @@ import models from './routes/models'
 import merchants from './routes/merchants'
 import { addOrder } from './routes/queue';
 import profile from './routes/profile'
+import verify from './routes/verify'
 
 let db: Connection
 
@@ -27,7 +28,15 @@ koa
     secret: process.env.JWT_SECRET || 'ddd',
     getToken: (ctx) => ctx.headers.authorization?.replace('Bearer ', '')
   })
-    .unless({ path: [/^\/$/, /^\/register\/?$/, /^\/login\/?$/] }))
+    .unless({
+      path: [
+        /^\/$/,
+        /^\/register\/?$/,
+        /^\/login\/?$/,
+        // eslint-disable-next-line no-useless-escape
+        /^\/verify\/[a-f0-9\-]*\/$/
+      ]
+    }))
   .use(cors({ credentials: true }))
   .use(router.routes())
   .use(router.allowedMethods())
@@ -43,7 +52,7 @@ koa.context.getRepo = function getRepo(target: any) {
 router
   .get('/', (ctx) => {
     ctx.body = {
-      data: 'hello world!',
+      data: 'hello world!'
     }
   })
   .post('/register', register)
@@ -52,6 +61,7 @@ router
   .get('/merchants', merchants)
   .post('/addOrder', addOrder)
   .use('/profile', ...profile())
+  .get('/verify/:uuid', verify)
 
 const port = parseInt(process.env.PORT || '3001', 10)
 

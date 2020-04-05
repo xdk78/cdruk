@@ -9,12 +9,14 @@ declare module 'koa' {
 
     getRepo<Entity>(target: ObjectType<Entity> | EntitySchema<Entity> | string): Repository<Entity>;
 
+    params: { [key: string]: string };
   }
+
   interface ExtendableContext {
-  	state: {
-  	  user: {
-  	    id: number
-  	  }
-  	}  	
+    state: {
+      user: {
+        id: number
+      }
+    }
   }
 }
