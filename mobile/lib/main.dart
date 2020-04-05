@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
+import 'contact_screen.dart';
 import 'signup_screen.dart';
 import 'models_screen.dart';
 import 'contact_screen.dart';
@@ -35,7 +35,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   SharedPreferences preferences;
 
   Future<SharedPreferences> loadPreferences() async {
@@ -46,7 +45,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    SharedPreferences.getInstance().then((value) => preferences = value).then((value) => build(context));
+    SharedPreferences.getInstance()
+        .then((value) => preferences = value)
+        .then((value) => build(context));
   }
 
   @override
@@ -61,12 +62,12 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text("CDRUK"),
             ),
             body: Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                RichText(
-                  text: TextSpan(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  RichText(
+                    text: TextSpan(
                       text:
                           'Lekarzom w całej polsce brakuje sprzętu, Jest im teraz potrzebna pomoc, aby mogli pomagać nam\n',
                       style: TextStyle(
@@ -78,29 +79,41 @@ class _MyHomePageState extends State<MyHomePage> {
                             text:
                                 '\nMasz drukarkę 3D i chcesz pomóc służbie zdrowia?',
                             style: TextStyle()),
-                        TextSpan(
-                            text: '\nZarejestruj się!\n',
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SignupScreen()));
-                              }),
-                        TextSpan(text: '\nW twoim szpitalu brakuje sprzętu?'),
-                        TextSpan(
-                            text: '\nZgłoś się do nas!',
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ContactScreen()));
-                              })
-                      ]),
-                )
-              ],
-            )),
+                      ],
+                    ),
+                  ),
+                  RaisedButton(
+                    child: Text(
+                      'Zarejestruj się!',
+                      style: TextStyle(fontSize: 24),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SignupScreen()));
+                    },
+                  ),
+                  RichText(
+                    text: TextSpan(
+                        text: '\nW twoim szpitalu brakuje sprzętu?',
+                        style: TextStyle(color: Colors.black, fontSize: 30)),
+                  ),
+                  RaisedButton(
+                    child: Text(
+                      'Zgłoś się do nas!',
+                      style: TextStyle(fontSize: 24),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ContactScreen()));
+                    },
+                  )
+                ],
+              ),
+            ),
             drawer: Drawer(
                 child: ListView(
               children: ListTile.divideTiles(
@@ -118,8 +131,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: ListTile(
                         title: Text('Log in'),
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => LoginScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()));
                         },
                       ),
                     ),
@@ -128,23 +143,29 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: ListTile(
                         title: Text('Sign up'),
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => SignupScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignupScreen()));
                         },
                       ),
                     ),
                     ListTile(
                       title: Text('3D Models'),
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => ModelsScreen()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ModelsScreen()));
                       },
                     ),
                     ListTile(
                       title: Text('Contact'),
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => ContactScreen()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ContactScreen()));
                       },
                     ),
                     Visibility(
