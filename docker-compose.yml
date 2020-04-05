@@ -8,4 +8,10 @@ services:
       - 127.0.0.1:17826:3000
     volumes:
       - ./database.sqlite:/app/database.sqlite
-    env_file: .env
+    env_file: ./backend/.env
+  frontend:
+    container_name: cdruk-frontend
+    build: ./frontend
+    ports:
+     - 127.0.0.1:17827:3000
+    env_file: ./frontend/.env
