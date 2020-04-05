@@ -14,14 +14,18 @@
 }
 
 .column {
-  height: 100%;
+  height: auto;
 }
 
 .leaflet-container {
-  height: calc(100vh - 300px);
+  height: 100%;
   width: 100%;
 }
 
 .column.is-three-quarters {
   margin-left: auto;
+}
+
+.columns.is-gapless {
+  margin-bottom: 0 !important;
 }

@@ -12,7 +12,7 @@ class Index extends React.Component<{}, {}> {
       <>
         <link rel="stylesheet" href="//unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
         <Navbar/>
-        <div className="main">
+        <div className="main columns is-gapless">
           <div className="column has-background-white">
             @TODO merchants here
           </div>
