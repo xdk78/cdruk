@@ -16,16 +16,22 @@ class _ModelsScreenState extends State<ModelsScreen> {
         title: Text("3D Models"),
       ),
       body: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              InkWell(
-                child: Text('Przyłbica prusy'),
-                onTap: () => launch('https://www.prusaprinters.org/prints/25857-prusa-face-shield'),
-              ),
-              Image(image: AssetImage('assets/Prusa_cover.jpg'),)
-            ]),
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                InkWell(
+                  child: Text('Przyłbica prusy'),
+                  onTap: () => launch(
+                      'https://www.prusaprinters.org/prints/25857-prusa-face-shield'),
+                ),
+                Image(
+                  image: AssetImage('assets/Prusa_cover.jpg'),
+                )
+              ]),
+        ),
       ),
     );
   }
