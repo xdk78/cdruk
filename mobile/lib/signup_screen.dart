@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:cdruk/api.dart';
+import 'package:cdruk/main.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignupScreen extends StatefulWidget {
   SignupScreen({Key key}) : super(key: key);
@@ -16,11 +20,18 @@ class _SignupScreenState extends State<SignupScreen> {
   var _error;
   var _done;
 
+  SharedPreferences preferences;
+
+  void loadPreferences() async {
+    preferences = await SharedPreferences.getInstance();
+  }
+
   @override
   void initState() {
     super.initState();
     _error = "";
     _done = "";
+    loadPreferences();
   }
 
   @override
@@ -81,6 +92,10 @@ class _SignupScreenState extends State<SignupScreen> {
                       _done = "Registered successfully";
                       _error = "";
                     });
+                    preferences.setString(
+                      "token", json.decode(value)['data']['token']);
+                    Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (BuildContext ctx) => MyHomePage()));
                   } else {
                     setState(() {
                       _error = value['error'];

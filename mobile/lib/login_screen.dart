@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cdruk/api.dart';
+import 'package:cdruk/main.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -72,7 +73,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     .then((value) {
                   if (value.runtimeType == String) {
                     preferences.setString(
-                        "token", json.decode(value)['data']['token']);
+                      "token", json.decode(value)['data']['token']);
+                    Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (BuildContext ctx) => MyHomePage()));
                   } else {
                     setState(() {
                       _error = value['error'];
