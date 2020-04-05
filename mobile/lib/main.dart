@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     RichText(
                       text: TextSpan(
                         text:
-                            'Lekarzom w całej polsce brakuje sprzętu, Jest im teraz potrzebna pomoc, aby mogli pomagać nam\n',
+                            'Lekarzom w całej Polsce brakuje sprzętu, Jest im teraz potrzebna pomoc, aby mogli pomagać nam\n',
                         style: TextStyle(
                           fontSize: 26,
                           color: Colors.black87,
