@@ -10,6 +10,7 @@ interface Merchant {
   email?: string
   name?: string
   location?: string
+  description?: string
 }
 
 function Index() {
@@ -34,7 +35,8 @@ function Index() {
             return (
               <div key={merchant.id} className="box">
                 <span>{merchant.name}</span><br/>
-                <span>{merchant.email}</span>
+                <span>{merchant.email}</span><br/>
+                <span>{merchant.description}</span>
               </div>
             )
           })}

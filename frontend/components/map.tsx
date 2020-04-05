@@ -12,9 +12,10 @@ interface Merchant {
   email?: string
   name?: string
   location?: string
+  description?: string
 }
 
-export default class SimpleExample extends React.Component<{ merchants: Merchant[] }, State> {
+export default class Map extends React.Component<{ merchants: Merchant[] }, State> {
   state = {
     lat: 52.23,
     lng: 21.01,
@@ -34,7 +35,8 @@ export default class SimpleExample extends React.Component<{ merchants: Merchant
             <Marker key={merchant.id} position={merchant.location.split(' ').map(x => parseFloat(x))}>
               <Popup>
                 {merchant.name}<br/>
-                {merchant.email}
+                {merchant.email}<br/>
+                {merchant.description}
               </Popup>
             </Marker>
           )
